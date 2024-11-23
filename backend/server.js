@@ -16,3 +16,6 @@ app.use("/record", records);
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+// const cors = require('cors');
+// app.use(cors({ origin: 'https://your-frontend.netlify.app' })); // Replace with your frontend domain
