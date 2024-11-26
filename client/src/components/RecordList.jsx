@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
+const endpoint = "/record";
 console.log(apiUrl)
 const Record = (props) => (
   <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
@@ -42,7 +43,7 @@ export default function RecordList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`${apiUrl}record/`);
+      const response = await fetch(`${apiUrl}${endpoint}`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
