@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
+const endpoint = "/record";
 export default function Record() {
   const [form, setForm] = useState({
     name: "",
@@ -18,7 +19,7 @@ export default function Record() {
       if(!id) return;
       setIsNew(false);
       const response = await fetch(
-        `${apiUrl}record/${params.id.toString()}`
+        `${apiUrl}${endpoint}/${params.id.toString()}`
       );
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -52,7 +53,7 @@ export default function Record() {
       let response;
       if (isNew) {
         // if we are adding a new record we will POST to /record.
-        response = await fetch(`${apiUrl}record`, {
+        response = await fetch(`${apiUrl}${endpoint}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +62,7 @@ export default function Record() {
         });
       } else {
         // if we are updating a record we will PATCH to /record/:id.
-        response = await fetch(`${apiUrl}record/${params.id}`, {
+        response = await fetch(`${apiUrl}${endpoint}/${params.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
